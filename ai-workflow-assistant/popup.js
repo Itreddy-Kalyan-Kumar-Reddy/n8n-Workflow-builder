@@ -132,10 +132,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const currentProvider = getCurrentProviderSettings();
         currentProvider.apiKey = apiKeyInput.value;
         currentProvider.baseUrl = baseUrlInput.value;
-
+    
         currentSettings.n8nUrl = document.getElementById('n8n-url').value;
         currentSettings.n8nApiKey = document.getElementById('n8n-api-key').value;
-
+    
         await chrome.storage.local.set({ settings: currentSettings });
         settingsStatus.textContent = 'Settings saved.';
         settingsStatus.style.color = 'var(--success-color)';
@@ -151,11 +151,11 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             currentSettings = { providers: {} };
         }
-
+    
         // Load n8n settings
         document.getElementById('n8n-url').value = currentSettings.n8nUrl || '';
         document.getElementById('n8n-api-key').value = currentSettings.n8nApiKey || '';
-
+    
         // Set initial provider if not set
         if (!currentSettings.provider) {
             currentSettings.provider = 'openai';
@@ -163,12 +163,12 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             providerSelect.value = currentSettings.provider;
         }
-
+    
         // Load current provider settings
         const currentProviderSettings = getCurrentProviderSettings();
         apiKeyInput.value = currentProviderSettings.apiKey;
         baseUrlInput.value = currentProviderSettings.baseUrl;
-
+    
         await fetchAndPopulateModels(result.selectedModel);
     }
 
@@ -494,7 +494,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             btn.textContent = 'Pushing...';
             btn.disabled = true;
-
+    
             const response = await fetch(`${currentSettings.n8nUrl}/api/v1/workflows`, {
                 method: 'POST',
                 headers: {
@@ -503,7 +503,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 body: JSON.stringify(workflowJson),
             });
-
+    
             if (!response.ok) {
                 const errorData = await response.json();
                 throw new Error(`n8n API Error: ${errorData.message}`);
@@ -511,7 +511,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             btn.textContent = 'Pushed Successfully!';
             setTimeout(() => btn.textContent = 'Push to n8n', 3000);
-
+    
         } catch (error) {
             alert(error.message);
             btn.textContent = 'Push to n8n';

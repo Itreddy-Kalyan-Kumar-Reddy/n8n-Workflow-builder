@@ -216,39 +216,13 @@ function createFloatingChat() {
     sendBtn.addEventListener('click', async () => {
         const prompt = input.value.trim();
         if (!prompt) return;
-
+    
         // Add user message
         addMessage('user', prompt);
         input.value = '';
-
-        // Get settings
-        const { settings } = await chrome.storage.local.get('settings');
-        if (!settings || !settings.apiKey || !settings.baseUrl) {
-            addMessage('error', 'Settings not configured. Open popup to set up.');
-            return;
-        }
-
-        // Send to background
-        chrome.runtime.sendMessage({
-            action: 'sendChatPrompt',
-            prompt: prompt,
-            model: settings.selectedModel || 'gpt-3.5-turbo'
-        }, (response) => {
-            if (response.error) {
-                addMessage('error', `Error: ${response.error}`);
-            } else {
-                addMessage('ai', response.response);
-                // Save to history
-                chrome.storage.local.get(['history'], (result) => {
-                    const history = result.history || [];
-                    history.unshift({ prompt, response: response.response, type: 'chat', timestamp: new Date().toISOString() });
-                    if (history.length > 50) {
-                        history.pop();
-                    }
-                    chrome.storage.local.set({ history });
-                });
-            }
-        });
+    
+        // For high security, API keys are not stored. Direct user to popup.
+        addMessage('error', 'For security, API keys are not stored and AI calls are disabled in floating chat. Please open the extension popup, enter your API key, and send prompts from there.');
     });
 
     input.addEventListener('keypress', (e) => {
