@@ -1,0 +1,388 @@
+:root {
+    --bg-color: #282c34;
+    --text-color: #abb2bf;
+    --primary-color: #61afef;
+    --border-color: #3b4048;
+    --input-bg: #21252b;
+    --success-color: #98c379;
+    --error-color: #e06c75;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    width: 380px;
+}
+
+.container {
+    padding: 16px;
+}
+
+header h1 {
+    font-size: 1.2em;
+    text-align: center;
+    margin: 0 0 16px 0;
+    color: var(--primary-color);
+}
+
+.tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 16px;
+}
+
+.tab-link {
+    flex-grow: 1;
+    padding: 10px;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease-in-out;
+}
+
+.tab-link:hover {
+    background-color: var(--input-bg);
+}
+
+.tab-link.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.form-group {
+    margin-bottom: 12px;
+}
+
+label {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 0.9em;
+}
+
+input[type="text"],
+input[type="password"],
+select,
+textarea {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 1em;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 8px;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #529bde;
+}
+
+.response-area {
+    margin-top: 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 8px;
+    background-color: var(--input-bg);
+}
+
+#response-output {
+    min-height: 120px;
+    max-height: 200px;
+    overflow-y: auto;
+    resize: vertical;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.hidden {
+    display: none;
+}
+
+#settings-status {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 0.9em;
+}
+
+#history-list .history-item {
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#history-list .history-prompt {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+#history-list .history-response {
+    margin-top: 8px;
+    font-style: italic;
+    white-space: pre-wrap;
+}
+
+#clear-history-btn {
+    background-color: var(--error-color);
+}
+
+/* Mode toggle styles */
+.mode-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mode-toggle label:first-of-type {
+    margin-right: 8px;
+}
+
+.mode-toggle input[type="radio"] {
+    width: auto;
+    margin-right: 4px;
+}
+
+.mode-toggle label:not(:first-of-type) {
+    margin-bottom: 0;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Button group styles */
+.button-group {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.button-group button {
+    width: auto;
+    flex: 1;
+}
+
+/* Code styling */
+pre code {
+    font-family: 'Courier New', Courier, monospace;
+    color: var(--text-color);
+}
+
+/* Additional spacing for n8n section */
+hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 20px 0;
+}
+
+/* History Card Styles */
+.history-card {
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    margin-bottom: 12px;
+    overflow: hidden;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    cursor: pointer;
+    background-color: rgba(97, 175, 239, 0.1);
+    transition: background-color 0.2s;
+}
+
+.card-header:hover {
+    background-color: rgba(97, 175, 239, 0.2);
+}
+
+.timestamp {
+    font-size: 0.8em;
+    color: #5c6370;
+    flex-shrink: 0;
+}
+
+.truncated-prompt {
+    flex: 1;
+    margin: 0 8px;
+    font-size: 0.9em;
+    color: var(--text-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.expand-btn {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-size: 1.2em;
+    cursor: pointer;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+.card-details {
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s;
+}
+
+.card-details:not(.hidden) {
+    max-height: 500px; /* Adjust based on content */
+    padding: 12px;
+}
+
+.full-prompt, .full-response {
+    margin-bottom: 16px;
+}
+
+.full-prompt h4, .full-response h4 {
+    margin: 0 0 8px 0;
+    color: var(--primary-color);
+    font-size: 0.95em;
+}
+
+.full-prompt pre, .full-response pre {
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 8px;
+    margin: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 0.85em;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.copy-buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.copy-buttons button {
+    flex: 1;
+    padding: 6px 10px;
+    font-size: 0.85em;
+    background-color: var(--primary-color);
+}
+
+.copy-buttons button:hover {
+    background-color: #529bde;
+}
+/* Delete button styles */
+.delete-btn {
+    background: var(--error-color);
+    border: none;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 8px;
+    transition: background-color 0.2s;
+}
+
+.delete-btn:hover {
+    background-color: #c53030;
+}
+/* JSON Tree Visualization */
+.json-tree {
+    min-height: 120px;
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 8px;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85em;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.json-tree details {
+    margin: 2px 0;
+}
+
+.json-tree summary {
+    cursor: pointer;
+    padding: 2px 4px;
+    border-radius: 2px;
+    transition: background 0.2s;
+}
+
+.json-tree summary:hover {
+    background: rgba(97, 175, 239, 0.1);
+}
+
+.json-tree .key {
+    color: #61afef;
+}
+
+.json-tree .string {
+    color: #98c379;
+}
+
+.json-tree .number {
+    color: #d19a66;
+}
+
+.json-tree .boolean {
+    color: #e06c75;
+}
+
+.json-tree .null {
+    color: #abb2bf;
+    font-style: italic;
+}

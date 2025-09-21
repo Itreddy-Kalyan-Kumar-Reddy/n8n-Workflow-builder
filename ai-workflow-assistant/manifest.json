@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "AI Workflow Assistant",
+  "version": "1.0",
+  "description": "Interact with any AI model from a browser sidebar to assist with your workflows.",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "contextMenus"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "16": "Image.png",
+    "32": "Image.png",
+    "48": "Image.png",
+    "128": "Image.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://app.n8n.cloud/*", "http://localhost:5678/*"],
+      "js": ["content.js"]
+    }
+  ]
+}
